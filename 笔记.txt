@@ -1,0 +1,125 @@
+django进行python web开发的一些知识
+python开发的一个免费开源的web框架，提供了许多网站后台开发经常用到的模块，开发者专注于业务部分
+any(list) 逻辑真True，全为假，返回False  any([])返回的是False
+all(list) 所有元素都为真返回True，返回False，注意 all([])为True
+max(list)或min(list)返回列表list中的最大值或最小值
+求和函数sum
+筛选函数  filter  对sequence进行帅选，满足条件返回迭代器，function的返回值只能是True或False
+list(filter(lambda x:x %2 !=0,range(1,11)))
+exec执行字符串形式的python命令
+command = "print('ok')"
+exec(command)
+结果： ok
+eval提取字符串的内容，evaluate单词的含义就是求值
+repr将对象转换成字符串形式
+ v = ['a','b']
+>>> s = repr(v)
+>>> print(s)
+['a', 'b']
+>>>
+eval(repr(object)) == object
+zip
+pow
+>>> pow(2,3,6)==2
+True
+a**b %c
+os模块
+os.mkdir创建目录
+os.makedirs创建所有子目录和可选权 mode=0o777可以读写的目录
+os.getcwd获取当前工作目录
+os.getenv('PATH')读取环境变量的PATH值
+os.putenv(KEY,VALUE)设置环境变量key，值是value 相当于os.environ[KEY] = VALUE
+os.listdir(path)  列出指定目录下所有文件和目录名
+os.remove删除指定问价按金
+os.rename重命名
+os.path.split将完整路径分开为目录名和文件名，返回一个二维元组，
+os.path.isfile(path)是否为文件
+os.path.isdir(path)是否为目录
+os.path.exists目录是否存在
+os.path.getctime(path) 获取创建时间
+os.path.getsize(path) 获取文件大小，单位是byte
+os.path.abspath(__file__)魔法变量，获取当前文件的绝对路径
+os.path.dirname(path) 取得文件或目录路径上一级
+os.path.join(a,b,....) 进行目录拼接操作，
+sys模块
+sys.exit(status) 相当于raise SystemExit(status)  退出正则运行的程序 ，help（sys.exit）查看详情
+sys.version python版本信息
+sys.stdin 标准输入留
+sys.stdout标准输出流
+sys.stderr标准错误流
+import time
+time.time()获取Unix Timestamp时间戳
+time.ctime() 获取时间字符串
+time.strftime() 获取当前年月日时分秒
+pickle模块
+把python对象存储到缓存或文件系统中以及从中恢复
+pickle.dumps python对象转换成pickle字符串
+pickle.loads还原成python对象
+pickle.dump(object,file) 将对象object存储到文件file中
+pickle。load 从文件file中取出对象并赋值给my_obj
+json模块
+json.dumps将字典或列表等序列化成'字符串'
+json.loads将字符串反序列化字典列表对象
+json.load 和json.dump读取或者写入
+shutil模块
+shutil.copyfile 将a.txt复制一份
+shutil.move移动目录或文件
+正则表达式
+核心函数
+re.compile(pattern) 返回一个regex对象
+regex对象，一下pattern参数不需要传入 re.compile(pattern).match(string)  re.findall(pattern,string)
+re.match(pattern,string)匹配
+re.search(pattern,string) 搜索
+re.findall找出所有，返回列表
+re.split(pattern,string,max=0)符合pattern处进行分割，返回列表，max可以指定最多分割的次数
+re.sub(pattern,repl,string,max=0)字符串替换，把string中符合pattern的部分替换成repl字符串
+re.subn(pattern,repl,string,max=0)多返回一个替换次数
+点表示所有，re.s或者re.DOTALL
+re.findall(r'.+','abc\ndef',re.DOTALL)
+['abc\ndef']
+
+不区别字母大小写,re.l或re.IGNOREASE
+re.findall(r'and','Andriod and IOS',re.IGNORECASE)
+['And', 'and']
+
+
+
+多行匹配，re.M或re.MULTILINE
+>>> re.findall(r'^a.','aa\nab\nac\nde',re.MULTILINE)
+['aa', 'ab', 'ac']
+
+
+http协议是超文本传输协议，从万维网服务传输超文本到本地浏览器的传输协议，应用程协议，基于TCP协议传送数据
+django-admin  startproject demo  创建demo项目
+python manage.py runserver 启动服务器
+python manage.py startapp blog  根目录创建
+python manage.py makemigrations blog 创建对于的表，
+python manage.py migrate blog 正式作用到数据库
+python manage.py migrate  创建用户相关的数据表等
+python manage.py createsuperuser 可以创建管理员站好  11_admin  qjwe1212
+python manage.py shell  django的终端
+
+from management.models import Book,Image
+
+In [2]: book = Book(name='深入理解计算机系统(原书第3版)',author='Randal E. Bryant',price
+   ...: =139.0,publish_date='2016-12-01',category='计算机与互联网')
+
+ book.save()
+
+book.price = 111.2
+
+In [5]: book.save()
+
+Book.objects.filter(category='计算机与互联网').update(category='计算机')
+
+book_set = Book.objects.all()
+book_set = Book.objects.filter(category='计算机与互联网')
+book_set = Book.objects.filter(category='计算机与互联网')
+book_set = Book.objects.filter(category='计算机与互联网').filter(publish_date__year=2016)
+
+
+
+
+
+
+
